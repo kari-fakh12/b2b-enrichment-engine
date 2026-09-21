@@ -1,0 +1,17 @@
+# keys
+.env
+.env.*
+!.env.example
+
+# anything the engine writes: real people live here, never commit it
+out/
+crm_cache.json
+*.csv
+!examples/*.csv
+*.jsonl
+*.xlsx
+
+__pycache__/
+*.pyc
+.venv/
+.DS_Store

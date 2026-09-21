@@ -1,0 +1,13 @@
+company,full_name,first_name,job_title,city,linkedin_url,email,phone,prospeo_mobile,fallback_mobile
+Northwind Recovery Example Ltd,Avery Sample,Avery,Chief Executive Officer,Toronto,https://linkedin.example.com/in/avery-sample,,,416-555-0101,
+Northwind Recovery Example Ltd,Jordan Placeholder,Jordan,Head of Quality Assurance,Toronto,https://linkedin.example.com/in/jordan-placeholder,,,,647-555-0102
+Northwind Recovery Example Ltd,Casey Testperson,Casey,Art Director,Toronto,https://linkedin.example.com/in/casey-testperson,,,416-555-0105,
+Northwind Recovery Example Ltd,Riley Fakename,Riley,Collections Manager,Toronto,https://linkedin.example.com/in/riley-fakename,,,416-555-0106,
+Maple Line Contact Example Inc,Taylor Mock,Taylor,President,Montreal,https://linkedin.example.com/in/taylor-mock,,,514-555-0107,
+Maple Line Contact Example Inc,Sam Example,Sam,Director of Customer Service,Montreal,https://linkedin.example.com/in/sam-example,,,923005550103,514-555-0104
+Maple Line Contact Example Inc,Morgan Demo,Morgan,VP Operations,Montreal,https://linkedin.example.com/in/morgan-demo,,,,
+Harbour Claims Example Co,Quinn Sample,Quinn,Chief Operating Officer,Halifax,https://linkedin.example.com/in/quinn-sample,,,902-555-0108,
+Harbour Claims Example Co,Blake Mockup,Blake,Director of Claims,Halifax,https://linkedin.example.com/in/blake-mockup,,,,
+Harbour Claims Example Co,Drew Example,Drew,Claims Manager,Halifax,https://linkedin.example.com/in/drew-example,,,902-555-0109,
+Tiny Dial Example Shop,Robin Placeholder,Robin,Owner,Hamilton,https://linkedin.example.com/in/robin-placeholder,,,905-555-0110,
+Already Known Example Corp,Lee Sample,Lee,Managing Director,Ottawa,https://linkedin.example.com/in/lee-sample,,,613-555-0111,

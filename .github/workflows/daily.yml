@@ -1,0 +1,57 @@
+name: Daily leads
+
+# Meant for the private working copy, where out/leads.csv exists. This job commits lead
+# data back to the repo, so only set the repo variable RUN_DAILY to 'true' in a PRIVATE repo.
+# In this public repo it is off and does nothing.
+on:
+  schedule:
+    - cron: '0 19 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  daily:
+    if: vars.RUN_DAILY == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Works-here check, replace leavers
+        env:
+          PROSPEO_API_KEY: ${{ secrets.PROSPEO_API_KEY }}
+          BETTERCONTACT_API_KEY: ${{ secrets.BETTERCONTACT_API_KEY }}
+          HUBSPOT_TOKEN: ${{ secrets.HUBSPOT_TOKEN }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: |
+          python run.py crm-fetch
+          python run.py --market ${{ vars.MARKET || 'CA' }} verify --replace
+      - name: Build today's new leads
+        id: digest
+        run: |
+          python run.py digest | tee /tmp/digest.out
+          echo "new=$(grep -oP 'NEW=\K[0-9]+' /tmp/digest.out | tail -1)" >> "$GITHUB_OUTPUT"
+          echo "file=$(grep -oP 'FILE=\K.*' /tmp/digest.out | tail -1)" >> "$GITHUB_OUTPUT"
+      - name: Email the new leads
+        if: steps.digest.outputs.new != '0' && steps.digest.outputs.new != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: Lead bot <${{ secrets.MAIL_USERNAME }}>
+          to: ${{ secrets.MAIL_TO }}
+          subject: "New leads today (${{ steps.digest.outputs.new }})"
+          body: "Today's new leads are attached. New today: ${{ steps.digest.outputs.new }}."
+          attachments: ${{ steps.digest.outputs.file }}
+      - name: Save the snapshot
+        run: |
+          git config user.name "leads-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -f out/last_digest.txt out/leads.csv
+          git commit -m "Daily leads snapshot [skip ci]" && git push || echo "no change"

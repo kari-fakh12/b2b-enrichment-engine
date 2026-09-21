@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.8', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile every file
+        run: python -m py_compile run.py engine/*.py
+      - name: Sample dry run (no network, no keys)
+        run: python run.py --sample
+      - name: Every sample lead has a phone
+        run: |
+          python - <<'PY'
+          import csv
+          rows = list(csv.DictReader(open("out/sample_leads.csv", encoding="utf-8")))
+          assert rows, "sample produced no leads"
+          assert all(r["phone"] for r in rows), "a lead shipped without a phone"
+          print("ok:", len(rows), "leads, all with a phone")
+          PY

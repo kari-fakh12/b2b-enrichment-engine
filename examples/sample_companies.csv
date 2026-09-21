@@ -1,0 +1,6 @@
+company,website,country,vertical,headcount,runs_call_centre,qa_evidence,qa_tool,pain,bilingual,fact,fact_source
+Northwind Recovery Example Ltd,https://northwind.example.com,CA,Debt collection / ARM,180,yes,yes,,provincial collection licensing,no,Northwind Recovery runs a 90-seat collections floor and is hiring two call QA analysts,https://northwind.example.com/careers
+Maple Line Contact Example Inc,https://mapleline.example.com,CA,BPO / contact centre,201-500,yes,unclear,,SLA penalties on client contracts,yes,Maple Line answers calls in English and French for its clients from one site,https://mapleline.example.com/about
+Harbour Claims Example Co,https://harbourclaims.example.com,CA,Insurance / claims,120,unclear,,,,no,,
+Tiny Dial Example Shop,https://tinydial.example.com,CA,Debt collection / ARM,12,yes,yes,,,no,Tiny Dial collects for local clinics,https://tinydial.example.com
+Already Known Example Corp,https://known.example.com,CA,BPO / contact centre,300,yes,yes,,,no,Already Known runs a 150-seat floor,https://known.example.com/about
